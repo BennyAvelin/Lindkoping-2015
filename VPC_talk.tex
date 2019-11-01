@@ -1,0 +1,384 @@
+
+\documentclass[reqno,a4paper,12pt]{amsart} 
+%\usepackage{hyperref} 
+%\usepackage[notcite, notref]{showkeys} 
+\usepackage{amssymb} 
+\usepackage{latexsym} 
+\usepackage{amsmath} 
+\usepackage{esint} 
+\usepackage[utf8x]{inputenc}
+\usepackage{todonotes}
+\usepackage[colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = blue,plainpages = false,hypertexnames = false,citecolor = red] {hyperref} 
+%\usepackage[norefs]{refcheck} 
+\allowdisplaybreaks
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}[theorem]{Proposition}
+
+%[section] 
+\newtheorem{lemma}[theorem]{Lemma}
+
+%[section] 
+\newtheorem{corollary}[theorem]{Corollary}
+
+%[section] 
+\theoremstyle{definition} 
+\newtheorem{definition}[theorem]{Definition} 
+\newtheorem{remark}[theorem]{Remark}
+
+%[section] 
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{problem}[theorem]{Problem}
+
+% \theoremstyle{definition}
+% \newtheorem{definition}[theorem]{Definition}
+\numberwithin{theorem}{section} \numberwithin{equation}{section}
+
+%\numberwithin{equation}{section}
+\newcommand{\R}{{\mathbb R}} 
+\newcommand{\RR}{{\mathbb R}} 
+\newcommand{\Q}{{\mathbb Q}} 
+\newcommand{\N}{{\mathbb N}} 
+\newcommand{\Z}{{\mathbb Z}} 
+\newcommand{\M}{{\mathcal M}} 
+\newcommand{\E}{{\mathbb E\,}}
+
+\renewcommand{\S}{{\mathbf S}} 
+\newcommand{\A}{{\mathbf A}} 
+\newcommand{\B}{{\mathbf B}} 
+\newcommand{\C}{{\mathbf C}} 
+\newcommand{\D}{{\mathbf D}}
+
+\newcommand{\U}{{\mathcal{U}}}
+
+\newcommand{\Si}{\ensuremath{\mathcal{S}}} 
+\newcommand{\Bo}{\ensuremath{\mathcal{B}}} 
+\newcommand{\T}{\ensuremath{\mathcal{T}}}
+
+\newcommand{\grad}{\nabla}
+
+\newcommand{\tint}{\int_{t_1}^{t_2} \int_{\Omega}} 
+\newcommand{\tsup}{\sup_{t_1 < t < t_2} \int_{\Omega}} 
+\newcommand{\tnoint}[1]{\int_{\Omega} #1 \bigg \rvert_{t_1}^{t_2}} 
+\newcommand{\tnointt}[1]{\int_{\Omega} #1 (t_2)} 
+\newcommand{\lbracket}{\left \{} 
+\newcommand{\rbracket}{\right \}} 
+\newcommand{\dx}{\, dx} 
+\newcommand{\dt}{\, dt} 
+\newcommand{\ds}{\, ds} 
+\newcommand{\dxdt}{\dx\dt}
+
+%\newcommand{\essliminf}{\operatorname{ess\,lim\,inf}}
+%\newcommand{\essinf}{\operatorname{ess\,inf}}
+\DeclareMathOperator*{\essliminf}{ess\,lim\,inf} \DeclareMathOperator*{\essinf}{ess\,inf} \DeclareMathOperator*{\esssup}{ess\,sup} \DeclareMathOperator*{\capacity}{cap} \DeclareMathOperator*{\supp}{supp}
+
+%\DeclareMathOperator*{\liminf}{lim\,inf}
+%\DeclareMathOperator*{\limsup}{lim\,sup}
+\newcommand{\DisplayNote}[1]{\textbf{(#1)}}
+
+\newcommand{\dif}[0]{\ensuremath{\,\mathrm{d}}} 
+\newcommand{\norm}[1]{\ensuremath{\Vert #1 \Vert}} 
+\newcommand{\scnorm}[1]{\ensuremath{\left\Vert #1 \right\Vert}} 
+\newcommand{\inprod}[1]{\ensuremath{\langle #1 \rangle}} 
+\newcommand{\scinprod}[1]{\ensuremath{\left\langle #1 \right\rangle}} 
+\newcommand{\dinprod}[1]{\ensuremath{\langle\langle #1 \rangle\rangle}} 
+\newcommand{\dscinprod}[1]{\ensuremath{\left\langle\left\langle #1 \right\rangle\right\rangle}} 
+\newcommand{\abs}[1]{\ensuremath{\vert #1 \vert}} 
+\newcommand{\scabs}[1]{\ensuremath{\left\vert #1 \right\vert}} 
+
+\begin{document} 
+\title{Nonlinear parabolic potential theory: \\ \tiny parabolic capacity}
+\date{\today}
+\author{Benny Avelin}
+\maketitle
+
+\section{Part I}
+\subsection{Heat equation}
+\begin{equation} \nonumber \label{}
+	Hu = u_t-\Delta u = 0.
+\end{equation}
+\subsubsection{Thermal capacity}
+The following definitions are due to Neil Watson PLMS. -78, \cite{W}.
+\begin{definition}
+	A superparabolic function $u$ in $E \subset \R^{n+1}$ is a l.s.c. function satisfying the comparison principle on cylinders and it is finite on a dense subset of $E$.
+\end{definition}
+\begin{definition}
+	Consider the set $E \subset \R^{n+1}$ and let $A \subset E$
+	\begin{equation} \nonumber \label{}
+		R_A^v = \inf \{u: u \geq v 1_A, \text{$u$ is superparabolic in $E$}\}\,,
+	\end{equation}
+	the Réduite or the Reduction of $v$ over $A$. Usually the function $v$ is a superparabolic function in $E$, we will mostly be concerned with $R_A^1$ which can be called the Balayage of $A$.
+\end{definition}
+Note that $R_A^v$ is sometimes called a hyperparabolic function, and let $\hat R_A^v$ denote the l.s.c. regularization of $R_A^v$, also called the \emph{smooth reduction}.
+Let $K \subset E$ be a compact set, then via the Riesz representation theorem there exists a measure $\mu_K$ such that
+\begin{equation} \nonumber \label{}
+	Hu = \mu_K
+\end{equation}
+in $E$.
+
+\begin{definition}
+	$\hat R_K$ is called the \emph{thermal capacitary potential}, and $\mu_K$ is the \emph{thermal capacitary distribution}. Denote
+	\begin{equation} \nonumber \label{}
+		C(K) = \mu_K(E)
+	\end{equation}
+	as the \emph{thermal capacity}.
+\end{definition}
+With this at hand we can define the inner capacity for $A \subset E$ and open set
+\begin{equation} \nonumber \label{}
+	C_\ast (A) = \sup \{C(K); K \subset A\}
+\end{equation}
+and the outer capacity for $A \subset E$ an arbitrary set
+\begin{equation} \label{}
+	C^\ast (A) = \inf \{C(O); O \supset A, \text{ $O$ open}\}
+\end{equation}
+\subsubsection{Another definition}
+Define capacity w.r.t measures, originally done at about the same time by
+
+\cite{KM} Kaiser, W.; Müller, B. Removable sets for the heat equation, Vestnik Moskov. Univ. Ser. I Mat. Meh. 28 (1973). and
+
+\cite{La1} Lanconelli, Sul problema di Dirichlet per l'equazione del calore, Annali di Matematica Pura ed Applicata. Series IV, 1973, for the reference set $R^{n+1}$.
+
+\begin{equation} \label{measure capacity definition}
+	C(A) = \sup \{ \mu(E), 0 \leq u_\mu \leq 1, \text{ in $E$}, \supp \mu \subset A\}
+\end{equation}
+coincides with the previous definition at least for compact sets. Note that in the following we will denote instead of $E$ use a space time cylinder of the type $\Omega \times (0,T) = \Omega_T$.
+\subsubsection{Wiener criterion}
+Let
+\begin{equation} \nonumber \label{}
+	F(x,t) = (4 \pi t)^{-n/2} e^{-\frac{|x|^2}{4t}}
+\end{equation}
+then we can define the heat balls as
+\begin{equation} \nonumber \label{}
+	\Omega(z_0,c) = \{z \in \R^{n+1}: F(z_0-z) > (4 \pi c)^{-n/2}\}
+\end{equation}
+Lanconelli, 1973 preliminary result.
+\begin{theorem}[Evans and Gariepy ARMA -82, \cite{EG}]
+	A point $z_0 \in \partial E$ is regular iff
+	\begin{equation} \nonumber \label{}
+		\sum_{i=0}^\infty 2^{kn/2} C((E^C \cap \Omega(z_0,2^{-k})) \setminus \Omega(z_0,2^{-(k+1)})) = + \infty
+	\end{equation}
+\end{theorem}
+\subsubsection{Variational capacity}
+\begin{equation} \nonumber \label{}
+	W = \{v \in L^2(0,T;H_0^1(\Omega)); v_t \in L^{2}(0,T;H^{-1}(\Omega))\}
+\end{equation}
+Smooth functions are dense in $W$, and we can thus define
+\begin{equation} \nonumber \label{}
+	C_{var}(K,\Omega_T) = \inf \{ \|u \|_{W(\Omega_T)}^2: u \geq 1_K; u \in C_0^\infty(\Omega \times \R) \}
+\end{equation}
+\begin{theorem}[Pierre, SIAM, -83, \cite{P}]
+	There exists constants $c_1,c_2$ such that
+	\begin{equation} \nonumber \label{}
+		c_1 C_{var}(K,\Omega_T) \leq C(K) \leq c_2 C_{var}(K,\Omega_T)
+	\end{equation}
+\end{theorem}
+\subsection{Nonlinear heat equation}
+Degenerate parabolic p-Laplace, $p > 2$
+\begin{equation} \nonumber \label{}
+	u_t - \nabla \cdot (|\nabla u|^{p-2} \nabla u) = 0.
+\end{equation}
+\subsubsection{Nonlinear capacity}
+The definition of the nonlinear parabolic capacity was done by Kinnunen, Korte, Kuusi and Parviainen, 2013, Math. Ann. \cite{KKKP}. The definition is same as in \eqref{measure capacity definition} but now $u_\mu$ solves 
+\begin{equation} \nonumber \label{}
+	u_t - \nabla \cdot (|\nabla u|^{p-2} \nabla u) = \mu.
+\end{equation}
+in $\Omega_T$, we call the capacity $C^p$.
+It has much of the good properties of a capacity, see \cite{KKKP}, for example it is a Choquet capacity.
+\subsubsection{Variational capacity}
+It was remarked by Pierre (SIAM, -83, \cite{P}) that the space
+for
+\begin{equation} \nonumber \label{}
+	V(\Omega_T) = L^p(0,T;W_0^{1,p}(\Omega))
+\end{equation}
+\begin{equation} \nonumber \label{}
+	W_p(\Omega_T) = \{v \in V(\Omega_T), v_t \in V'(\Omega_T)\}
+\end{equation}
+would be suitable for a variational capacity for the parabolic $p$-Laplacian.
+In a paper by 
+
+\cite{DPP} Droniou, J., Porretta, A., and Prignet, A. Pot. An. 2003
+
+\begin{equation} \nonumber \label{}
+	C_{DPP}(K) = \inf \{ \|v\|_{W_p(\Omega_\infty)}: u \geq 1_K; u \in C_0^\infty(\Omega \times \R) \}
+\end{equation}
+
+They studied precisely this space and defined a capacity in terms of its norm. With this at hand they could prove certain good qualities, for example that it is a reasonable definition of capacity and that zero sets are removable for the equation. That is there is a unique solution to the bounded Cauchy measure data problem given that the measure does not charge sets of zero capacity and the initial data is in $L^1$.
+
+We took a slightly different point of view, in that instead of minimizing the norm we will minimize the following anisotropic quantity
+
+\begin{equation} \nonumber \label{}
+	C^p_{var}(K) = \inf \{ \|v\|^{p}_{V(\Omega_\infty)} + \|v_t\|^{p'}_{V'(\Omega_\infty)}: v \geq 1_K; v \in C_0^\infty(\Omega \times \R) \}
+\end{equation}
+The downside of the above definition is the same downside as with the variational quantity introduced by Pierre $C_{var}$, and that it is very hard to prove any capacitary properties for this quantity. Pierre solves it by also studying $C_{DPP}$ for $p=2$ and then noting that $C_{var} \approx C_{DPP}^2$, but this only works if $p=p'=2$.
+
+\begin{theorem}[B.A, T6, M. Parviainen, to appear DCDS-A]
+	\begin{equation} \nonumber \label{}
+		C^p_{var}(K) \approx C^p(K).
+	\end{equation}
+\end{theorem}
+
+This allows us to estimate the capacity of certain simple sets, but as we will se later the result we prove is actually stronger and allows for more estimates.
+
+The relation to the capacity in $C_{DPP}$ obviously becomes
+\begin{equation} \nonumber \label{}
+	\min\{C_{DPP}(K)^p,C_{DPP}(K)^{p'}\} \leq C^p_{var}(K) \leq \max\{C_{DPP}(K)^p,C_{DPP}(K)^{p'}\}
+\end{equation}
+
+\section{Part II}
+\subsection{Local definitions}
+We need to introduce a local version of the variational quantity we had before, as such we define
+\begin{align*} \nonumber \label{}
+	C_{var}(K,\Omega_T) = \inf &\{\lambda^2: \lambda^2 = \|v\|^{p}_{V(\Omega_{\lambda^{2-p}T})} + \|v_t\|^{p'}_{V'(\Omega_{\lambda^{2-p}T})}, \\
+	&v \geq 1_K; v \in C_0^\infty(\Omega \times \R) \}
+\end{align*}
+Let us also introduce an energy based quantity
+\begin{align*} \nonumber \label{}
+	C_{en}(K,\Omega_T) = \inf&\bigg\{\sup_{0 < t < T} \int_{\Omega} v(x,t)dx + \int_{\Omega_T} |\nabla v|^p dx dt, \\
+	&v \geq 1_K, \text{ $v$ is superparabolic} \bigg\}
+\end{align*}
+
+We have the following two theorems
+\begin{theorem}[B.A, T6, M. Parviainen] \label{equivalence1}
+	Let $K \subset \Omega_T$ be a compact set consisting of a finite collection of space time boxes, then
+	\begin{equation} \nonumber \label{}
+		C_p(K,\Omega_T) \approx C_{en} (K,\Omega_T).
+	\end{equation}
+\end{theorem}
+\begin{theorem}[B.A, T6, M. Parviainen] \label{equivalence2}
+	Let $K \subset \Omega_T$ be a compact set consisting of a finite collection of space time boxes, let $\lambda^2 = C_{var}(K,\Omega_T)$ and assume that $K \subset \Omega_{\lambda^{2-p} T}$, then
+	\begin{equation} \nonumber \label{}
+		C_{var}(K,\Omega_T) \approx C_{en} (K,\Omega_T).
+	\end{equation}
+\end{theorem}
+
+To conclude the equivalence between the parabolic capacity and the variational capacity we need to consider decreasing sequences of compact sets. The problem is now that we cannot consider the energy capacity in the limit since we do not know how to take a limit of the energy capacity. Thus the best we can do is the equivalence between $C_p$ and $C_{var}$. Letting $T \to \infty$ together with a convergence result for $C_{var}$ gives our equivalence.
+
+Note that in the paper by Gariepy and Ziemer JDE 1982, \cite{GZ2}, they show for example that if we consider the simpler variational quantity
+\begin{align*} \nonumber \label{}
+	C_1(K) = \inf \bigg \{ &\bigg [\int_0^T \bigg [\int_{\R^n} (|\grad u|^p + |u_t|^{p/2}) dx \bigg ]^{q/p} dt \bigg ]^{1/q}: \\
+	& v \geq 1_K; v \in C_0^\infty(\Omega \times \R) \bigg \}
+\end{align*}
+where $p, q \geq 2$, this is too weak to capture the behavior of the capacity, at least if $n=2$. What they show more specifically is that if $v(t):[0,1] \to \R^2$ is Peano's classical space filling curve, then the set $K = \{(v(t),t):t \in [0,1]\}$ satisfies $C_1(K) > 0$ and $C^2(K) = 0$.
+Another energy type capacity was studied by Ziemer in JDE 1980, \cite{Z}, where the only difference is that they have removed the restriction of superparabolicity, this is also too weak as proved again by \cite{GZ2}.
+This begs the question, what does the $L^1$ norm of $u_t$ miss that the dual norm of $H^{-1}$ catches? It would be nice to understand this on a deeper level.
+
+\subsection{Estimating capacities of explicit sets}
+\subsubsection{Curves}
+\begin{theorem}[B.A, T6, M. Parviainen]
+	Let $\phi:[t_1,t_2] \to \Omega$ be a Lipschitz curve and let $K \subset \Omega$ be a set with elliptic $p$-capacity $0$, then the set
+	\begin{equation} \nonumber \label{}
+		K_{\phi} = \{(x+\phi(t),t): x \in K, t \in [t_1,t_2]\}
+	\end{equation}
+	has parabolic capacity $0$, if $2 \leq p \leq n$.
+\end{theorem}
+As we mentioned before, regularity is essential, since if we consider a Hölder curve (Peano), then the capacity can be positive.
+
+\subsubsection{Slicing}
+\begin{theorem}[B.A, T6, M. Parviainen] \label{slicing}
+	Let $K \subset \Omega_\infty$ be a compact set, then
+	\begin{equation} \nonumber \label{}
+		\int_0^\infty C_e(\phi_t(K),\Omega) dt \leq C_{var}(K,\Omega_\infty)
+	\end{equation}
+	where $\pi_t(x,s) = x 1_t(s)$.
+\end{theorem}
+First done by Watson 1978, \cite{W} for the heat equation.
+\subsubsection{Cylinders with proof}
+\begin{theorem}[B.A, T6, M. Parviainen]
+	Let $Q_r = B(x_0,r) \times (t_0-\hat T, t_0)$ where $\hat T < t_0$ and $Q_{2r} \subset \Omega_T$, then
+	\begin{equation} \nonumber \label{}
+		C_p(\overline Q_r,\Omega_\infty) \approx r^n + \hat T r^{n-p}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	The lower bound follows from Theorem \ref{slicing} and the fact that the disc has capacity approximately $r^n$. To prove the upper bound, let us do the following construction. Consider the function $u: \Omega \to \R$, $-\Delta_p u = 0$, $u = 1$ on $\overline B(x_0,r)$ and $u = 0$ on $\partial \Omega$. Let now $h(x,t)$ solve
+	\begin{equation} \nonumber \label{}
+		\begin{cases}
+			h=0, & \text{ on } \partial \Omega \times [t_0,\infty), \\
+			h=u, & \text{ on } t=t_0, x \in \Omega, \\
+			h_t - \Delta_p h = 0, & \text{ in } \Omega \times (t_0,\infty)
+		\end{cases}
+	\end{equation}
+	Now the following function is almost right,
+	\begin{equation} \nonumber \label{}
+		v(x,t)
+		\begin{cases}
+			h(x,t), & t \geq t_0 \\
+			u(x), & t_0 - \hat T < t < t_0 \\
+			0, & t \leq t_0 - \hat T
+		\end{cases}
+	\end{equation}
+	we only need to do this by extending it below the cylinder with a small $\epsilon$ and take a limit. Now calculating the energy of $v$ actually gives us the upper bound via our equivalence theorem, Theorem \ref{equivalence1} and Theorem \ref{equivalence2}
+\end{proof}
+\subsubsection{Polar sets}
+In his paper
+
+Watson 1978, \cite{W}
+
+he defined a polar set as follows
+\begin{definition}
+	We call a set $E$ polar if there is a superparabolic function $u$ defined in a neighborhood of $E$ such that $u = +\infty$ on $E$.
+\end{definition}
+However this might not be the most natural definition for $p > 2$.
+In Lindqvist, Kuusi, Parviainen (preprint, \cite{LKP}) it was defined as backwards limits instead.
+
+So the question remains, what relation is there between the capacity and the points of infinities for superparabolic functions.
+
+With the above definition of polar sets, Watson Proc. London Math. Soc. (3) 37 (1978), proved that polar sets have capacity zero. \cite{W}.
+
+\subsubsection{Some open questions}
+\begin{itemize}
+	\item Consider a domain $E \subset \R^{n+1}$, and a set $A \subset \partial E$. Consider two functions $g_1,g_2$ on $\partial E$ such that they are continuous on $\partial E \setminus A$, does the Perron solution with boundary datum $g_1$ coincide with the Perron solution with boundary datum $g_2$?
+	\item Is there a characterization of sets of capacity zero in terms of the sets where the smooth reduction vanishes identically.
+	\item If the set is strictly contained in $\Omega_T$, is polar sets the same as sets of capacity zero. In \cite{KKKP} it was shown that a polar set strictly contained in $\Omega_T$ has capacity zero.
+\end{itemize}
+
+\begin{thebibliography}{KKKP}
+	\bibitem[DPP]{DPP} J. Droniou, A. Porretta and A. Prignet. 
+	\newblock Parabolic capacity and soft measures for nonlinear equations. 
+	\newblock \emph{Potential Anal.} 19 (2003), no. 2, 99--161.
+	
+	\bibitem[EG]{EG} L. C. Evans and R. F. Gariepy. 
+	\newblock Wiener's test for the heat equation. 
+	\newblock {\em Arch. Rational Mech. Anal.}, 78 (1982), 293--314.
+	
+	\bibitem[GZ]{GZ2} R. Gariepy and W. P. Ziemer. 
+	\newblock Thermal capacity and boundary regularity. 
+	\newblock {\em J. Differential Equations.}, 45 (1982), 374--388.
+	
+	\bibitem[KM]{KM} V. Kaizer and B Müller.
+	\newblock Removable sets for the heat equation. 
+	\newblock {\em Vestnik Moskov. Univ. Ser. I Mat. Meh.}, 28 (1973).
+	
+	\bibitem[KKKP]{KKKP} J. Kinnunen, R. Korte, T. Kuusi and M. Parviainen, 
+	\newblock Nonlinear parabolic capacity and polar sets of superparabolic functions.
+	\newblock \emph{Math. Ann.} 355 (2013), no. 4, 1349--1381.
+	
+	\bibitem[L]{La1} E. Lanconelli. 
+	\newblock Sul problema di Dirichlet per l'equazione del calore. 
+	\newblock {\em Ann. Mat. Pura Appl.}, 97 (1973), 83--114.
+	
+	\bibitem[LKP]{LKP} P. Lindqvist and T. Kuusi and M. Parviainen.
+	\newblock Shadows of infinities. 
+	\newblock preprint.
+	
+	\bibitem[P]{P} M. Pierre. 
+	\newblock Parabolic capacity and Sobolev spaces. 
+	\newblock \emph{SIAM J. Math. Anal.} 14 (1983), no. 3, 522--533.
+	
+	\bibitem[S1]{S1} L.M.R. Saraiva, 
+	\newblock Removable singularities and quasilinear parabolic equations. 
+	\newblock \emph{Proc. London Math. Soc.} (3) 48 (1984), no. 3, 385–400.
+	
+	\bibitem[S2]{S} L.M.R. Saraiva, 
+	\newblock Removable singularities of solutions of degenerate quasilinear equations.
+	\newblock \emph{Ann. Mat. Pura Appl.} (4) 141 (1985), 187--221.
+	
+	\bibitem[W]{W} N. A. Watson. 
+	\newblock Thermal capacity. 
+	\newblock {\em Proc. London Math. Soc.}, 37 (1978), 342--362.
+	
+	\bibitem[Z]{Z} W. P. Ziemer. 
+	\newblock Behavior at the boundary of solutions of quasilinear parabolic equations.
+	\newblock {\em J. Differential Equations.}, 35 (1980), 291--305.
+\end{thebibliography}
+\end{document} 

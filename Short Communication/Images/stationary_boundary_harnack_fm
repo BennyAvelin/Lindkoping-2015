@@ -1,0 +1,9 @@
+% head:
+% \usepackage{amssymb}
+% end head
+\psfrag{D}{$D$}
+\psfrag{R}{$\mathbb{R}$}
+\psfrag{Rn}{$\mathbb{R}^n$}
+\psfrag{u=v=0}{$u\equiv v\equiv 0$}
+\psfrag{r}{$r$}
+\psfrag{A}{$A$}

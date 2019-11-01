@@ -1,0 +1,10 @@
+% head:
+% \usepackage{amsmath,amssymb}
+% end head
+\psfrag{Omega}{$\Omega$}
+\psfrag{u=1}{$u \equiv 1$}
+\psfrag{u=0}{$u \equiv 0$}
+\psfrag{w}{$w=0$}
+\psfrag{D}{$D$}
+\psfrag{xn}{$x_n$}
+\psfrag{ball}{$B(w,1/8) \cap \Omega$}

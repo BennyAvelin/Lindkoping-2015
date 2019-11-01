@@ -1,0 +1,382 @@
+\documentclass[10pt]{beamer}
+% Preamble (fold)
+
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{esint}
+
+\def \postcode {??}
+\def \city {Espoo}
+\def \englishinst {Department of Mathematics and Mathematical Statistics}
+\def \englishuniversity {Aalto University}
+\def \englishtitle {Variational Parabolic Capacity}
+
+\newcommand{\englishindent}{\setlength\parindent{18pt}\setlength\parskip{0pt}}
+
+
+\providecommand{\e}{\varepsilon}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\phi}{\varphi}
+
+\DeclareMathOperator{\esssup}{ess\,sup\ }
+\DeclareMathOperator{\essinf}{ess\,inf\ }
+%\renewcommand{\sup}{\textrm{sup }}
+%\renewcommand{\inf}{\textrm{inf }}
+\renewcommand{\div}{\textrm{Div }}
+\providecommand{\transpose}[1]{#1^{\intercal}}
+\providecommand{\D}[2]{\frac{\partial #1}{\partial #2}}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\supp}{\textrm{supp}}
+\providecommand{\sint}{-\!\!\!\!\!\!\int}
+\providecommand{\siint}{\text{---}\!\!\!\!\!\!\!\!\iint}
+\providecommand{\rquad}{\!\!\!\!\!\!}
+
+
+% for themes, etc.
+\mode<presentation>
+\usetheme{Boadilla}
+{ \usetheme{boxes} }
+
+\usepackage{times}  % fonts are up to you
+\usepackage{graphicx}
+\usepackage{bm}
+%\setbeamercovered{transparent}
+\newtheorem{Conjecture}{Conjecture}
+\newtheorem{question}{Question}
+\providecommand{\Ehyp}{E^{hyp}}
+
+
+% these will be used later in the title page
+\title{\englishtitle}
+\author{Benny Avelin \\
+	(J. Work with T. Kuusi, M. Parviainen) \\
+	\vspace{1cm}
+ {\large PDES \\
+ Potential theory \\Function spaces\\}
+ \small In honour of Lars Inge Hedberg (1935-2005) \\
+ \ \\
+	June 15, 2015
+}
+\date
+% Preamble (end)
+
+\begin{document}
+
+\begin{frame} % Title page
+\titlepage
+% \begin{center}
+% 	\includegraphics[scale=0.5]{Images/umu.pdf}
+% \end{center}
+\end{frame}
+
+% \begin{frame} % Outline of my Talk
+% 	\frametitle{Outline of my Talk}
+% 	\begin{enumerate}
+% 		\item History of the problem
+% 		\item Introduction
+% 		\item Statement of results
+% 	\end{enumerate}
+% \end{frame}
+
+\begin{frame}
+	\frametitle{$p$-parabolic equation}
+	\begin{equation} \nonumber \label{}
+		Hu = u_t - \Delta_p u = 0\,.
+	\end{equation}
+	\uncover<1>{\begin{definition}
+		A p-superparabolic function $u$ in $E \subset \R^{n+1}$ is a l.s.c. function satisfying the comparison principle on cylinders and it is finite on a dense subset of $E$.
+	\end{definition}}
+	\pause
+	\begin{definition}
+		Consider the set $E \subset \R^{n+1}$ and let $A \subset E$
+		\begin{equation} \nonumber \label{}
+			R_A^v = \inf \{u: u \geq v \cdot 1_A, \text{$u$ is superparabolic in $E$}\}\,,
+		\end{equation}
+		the Réduite or the Reduction of $v$ over $A$. Usually the function $v$ is a superparabolic function in $E$, we will mostly be concerned with $R_A^1$ which can be called the Balayage of $A$.
+	\end{definition}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Facts about the $p$-superparabolic functions}
+	\begin{enumerate}
+		\item Locally bounded $p$-superparabolic functions are weak supersolutions [Kinnunen, Lindqvist, Ann. Math. Pura Appl. -06]
+		\pause
+		\item weak supersolutions have a l.s.c. representative which is a $p$-superparabolic function [Kuusi, Differential Integral Equations -09]
+		\pause
+		\item for each Radon measure $\mu$ there is a potential $u_\mu$ which is a $p$-parabolic function 
+		\begin{equation} \nonumber \label{}
+			(u_\mu)_t - \Delta_p u_{\mu} = \mu
+		\end{equation}
+		in the weak sense. [Kinnunen, Lukkari, Parviainen, JFA -10, J. Fixed Point Theory Appl. -13]
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Different notions of capacity}
+	Let our domain be the open set $\Omega_T = \Omega \times (0,T) \subset \R^{n+1}$:\\
+	\uncover<1,5>{
+	\begin{block}{Using the capacitary potential charge}
+		\begin{equation}
+			C_0(K) = \mu_{R_K}(K)
+		\end{equation}
+	\end{block}
+	}
+	\uncover<2,5>{
+	\begin{block}{Using the maximal charge}
+		\begin{equation} \label{measure capacity definition}
+			C_1(E) = \sup \{ \mu(\Omega_T), 0 \leq u_\mu \leq 1, \text{ in $\Omega_T$}, \supp \mu \subset E\}
+		\end{equation}
+	\end{block}
+	}
+	\uncover<3-4,5>{
+	\begin{block}{For $p = 2$ using the function space (variational) approach}
+			\begin{equation} \nonumber \label{}
+				W = \{v \in L^2(0,T;H_0^1(\Omega)); v_t \in L^{2}(0,T;H^{-1}(\Omega))\}
+			\end{equation}
+			Smooth functions are dense in $W$, and we can thus define a "capacity"
+			\begin{equation} 
+				C_{var}(K,\Omega_T) = \inf \{ \|u \|_{W(\Omega_T)}^2: u \geq 1_K; u \in C_0^\infty(\Omega \times \R) \}
+			\end{equation}
+		\end{block}
+	}
+	\uncover<4>{
+	%Since $C_{var}$ is stable w.r.t. to decreasing sequences of compact sets, the outer capacity makes sense, we thus extend $C_{var}$ as
+	We can extend as
+	\begin{equation} \nonumber \label{}
+		C_{var}(E, \Omega_T) = \inf \big \{ \sup \{C_{var}(K); K \subset O, \text{ $K$ compact} \}; O \supset E; \text{ $O$ open set} \big \}
+	\end{equation}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Different notions of capacity}
+	The capacitary potential charge gives the same capacity as the maximal charge on compact sets i.e.
+	\begin{theorem} [Kinnunen, Korte, Kuusi, Parviainen, Math. Ann. -13]
+		\begin{equation} 
+			C_0(K) = C_1(K)\,.
+		\end{equation}
+	\end{theorem}
+	Since we will only work with compact sets from now on we will simply use $C(K)$.
+	
+	\pause
+	What about the variational "capacity"?
+	\begin{theorem} [Pierre, SIAM -83]
+		Let $p=2$ then
+		\begin{equation} \nonumber \label{}
+			C_{var}(K) \approx C(K)\,.
+		\end{equation}
+	\end{theorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What about $p > 2$?}
+	It was proposed by Pierre, SIAM -83 that
+	\begin{equation} \nonumber \label{}
+		W = \{v \in L^p(0,T;W_0^{1,p}(\Omega)); v_t \in (L^p(0,T;W_0^{1,p}(\Omega)))'\}
+	\end{equation}
+	\pause
+	and define the variational capacity as
+	\begin{equation} 
+		C_{P}(K,\Omega_T) = \inf \{ \|u \|_{W(\Omega_T)}: u \geq 1_K; u \in C^\infty(\Omega \times \R) \}
+	\end{equation}
+	This capacity has been studied in a paper by Droniou, Poretta, Prignet, Pot. Anal. -03. Where the studied the homogeneous Dirichlet measure data problem with $L^1$ initial data, and showed that there is a unique renormalized solution if the measure does not charge a set of zero capacity.
+\end{frame}
+
+\begin{frame}
+	\frametitle{What about $p > 2$?}
+	It turns out that 
+	\begin{equation} \nonumber \label{}
+		C(K) \not \approx C_{P}(K,\Omega_T)^q
+	\end{equation}
+	for any exponent $q > 0$. \\
+	\pause
+	Define
+	\begin{equation} \nonumber \label{}
+		V = L^p(0,T;W_0^{1,p}(\Omega));
+	\end{equation}
+	\begin{equation} \nonumber \label{}
+		W = \{ u \in V; u_t \in V'\}\,,
+	\end{equation}
+	The norm in the space $W$ does not scale well under intrinsic rescaling, this comes from the dual powers $p$ and $p'$, thus in order to remedy this we need to consider
+	\begin{equation} \nonumber \label{}
+		%C_{P1}(K,\Omega_T) = \inf \{ \|u \|_{V(\Omega_T)}^p + \|u_t\|_{V'(\Omega_T)}^{p'}: u \geq 1_K; u \in C^\infty(\Omega \times \R) \}
+		\|u \|_{V(\Omega_T)}^p + \|u_t\|_{V'(\Omega_T)}^{p'}
+	\end{equation}
+	\pause
+	This quantity scales quadradically with respect to intrinsic rescaling $\lambda^{-1} u(x,\lambda^{2-p} t)$, which is the same behavior as the energy of a solution to our equation
+	\begin{equation} \nonumber \label{}
+		u_t - \Delta_p u = 0\,.
+	\end{equation}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Intrinsic variational capacity for $p > 2$}
+	With all this in mind we will define an intrinsic variational capacity as
+	\begin{align*} \nonumber \label{}
+		C_{var}(K,\Omega_T) = \inf &\{\lambda^2: \lambda^2 = \|v\|^{p}_{V(\Omega_{\lambda^{2-p}T})} + \|v_t\|^{p'}_{V'(\Omega_{\lambda^{2-p}T})}, \\
+		&v \geq 1_K; v \in C^\infty(\Omega \times \R) \}
+	\end{align*}
+	\pause
+	\begin{block}{Some properties of $C_{var}$}
+		Let $K \subset \Omega_T$ be a compact set
+		\begin{enumerate}
+			\item \label{p1} $C_{var}(K,\Omega_T) < \infty$
+			\item \label{p2} $C_{var}(K_1,\Omega_T) \leq C_{var}(K_2,\Omega_T)$
+			\item \label{p3} $C_{var}(K,\Omega_{T_1}) \leq C_{var}(K,\Omega_{T_2})$ for $T_1 \leq T_2$.
+			\item \label{p4} Let $K_i$, $i=1,2,\ldots$ be compact sets in $\Omega_T$ then
+			\begin{equation} \nonumber \label{}
+				\lim_{i \to \infty} C_{var}(K_i,\Omega_T) = C_{var}(\cap_i K_i,\Omega_T)\,.
+			\end{equation}
+		\end{enumerate}
+	\end{block}
+	%\pause
+	%Property \eqref{p1}, \eqref{p2}, and \eqref{p4}, implies that the outer capacity of $C_{var}$ is a (regular) Choquet capacity.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Global version}
+	\begin{lemma}[B.A., Kuusi, Parviainen, DCDS -15]
+		Define
+		\begin{align*} \nonumber \label{}
+			C_{var}(K,\Omega_\infty) = \inf &\{\|v\|^{p}_{V(\Omega_{\infty})} + \|v_t\|^{p'}_{V'(\Omega_{\infty})}, v \geq 1_K; v \in C^\infty(\Omega \times \R) \}
+		\end{align*}
+		then for $K \subset \Omega_\infty$
+		\begin{equation} \nonumber \label{}
+			\lim_{T \to \infty} C_{var}(K,\Omega_T) = C_{var}(K,\Omega_\infty)\,.
+		\end{equation}
+	\end{lemma}
+	\pause
+	\begin{block}{Comparison with $C_P$}
+		The capacity defined in [DPP] w.r.t. to the norm of the space $W$ is related to the variational capacity for $T = \infty$
+		{\small
+		\begin{equation} \nonumber \label{}
+			\min\{C_{P}(K,\Omega_\infty)^p,C_{P}(K,\Omega_\infty)^{p'}\} \leq C_{var}(K,\Omega_\infty) \leq \max\{C_{P}(K,\Omega_\infty)^p,C_{P}(K,\Omega_\infty)^{p'}\}
+		\end{equation}}
+		In particular, zero sets coincide.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{This is all nice, but what can we do with it?}
+	Define the energy of a $p$-superparabolic function as
+	\begin{equation} \nonumber \label{}
+		\|u\|_{en} = \sup_{0 < t < T} \frac{1}{2} \int_{\Omega} u^2(x,t) dx + \int_0^T \int_{\Omega} |D u|^p dx dt
+	\end{equation}
+	and define the capacity
+	\begin{equation} \nonumber \label{}
+		C_{en} (K, \Omega_T) = \inf \{\|u\|_{en}: \text{$u \in V$ is $p$-superparabolic and $u \geq 1_K$}\}  
+	\end{equation}
+	\pause
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $K$ be a finite union of closed space-time cylinders, set $\lambda^2 = C_{var}(K,\Omega_T)$, and suppose that $K \subset \Omega_{\lambda^{2-p}T}$. Then
+		\begin{equation} \nonumber \label{}
+			C_{var}(K,\Omega_T) \approx C_{en}(K,\Omega_{\lambda^{2-p}T})
+		\end{equation}
+	\end{theorem}
+	\pause
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $K$ be a finite union of closed space-time cylinders, and suppose that $K \subset \Omega_T$. Then
+		\begin{equation} \nonumber \label{}
+			C(K,\Omega_T) \approx C_{en}(K,\Omega_T)
+		\end{equation}
+	\end{theorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Taking a limit!}
+	Note that $C_{var}$ and $C_{P}$ are stable w.r.t. to decreasing limits of compact sets, but it is unknown whether $C_{en}$ is! This gives our limit result
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $K$ be a compact set, let $\lambda^2 = C_{var}(K,\Omega_T)$, and suppose that $K \subset \Omega_{\lambda^{2-p}T}$. Then
+		\begin{equation} \nonumber \label{}
+			C_{var}(K,\Omega_T) \approx C(K,\Omega_{\lambda^{2-p}T})\,.
+		\end{equation}
+		$C$ does not depend on $T$, thus
+		\begin{equation} \nonumber \label{}
+			C_{var}(K,\Omega_T) \approx C(K,\Omega_{\infty})\,.
+		\end{equation}
+	\end{theorem}
+\end{frame}
+\begin{frame}
+	\frametitle{Taking a second limit!}
+	Our previous stability result for $C_{var}$ w.r.t. to $T$ gives
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $K$ be a compact set in $\Omega_\infty$ then
+		\begin{equation} \nonumber \label{}
+			C_{var}(K,\Omega_\infty) \approx C(K,\Omega_{\infty})\,.
+		\end{equation}
+	\end{theorem}
+	\pause
+	\begin{block}{Reminder}
+		\begin{eqnarray} \nonumber \label{}
+			C_{var}(K,\Omega_\infty) &=& \inf \{\|v\|^{p}_{V(\Omega_{\infty})} + \|v_t\|^{p'}_{V'(\Omega_{\infty})}, v \geq 1_K; v \in C^\infty(\Omega \times \R) \} \\
+			C(K,\Omega_\infty) &=& \sup\{\mu(\Omega_\infty), 0 \leq u_\mu \leq 1, \text{ in $\Omega_\infty$ and $\supp \mu \subset K$}\}
+		\end{eqnarray}
+	\end{block}
+\end{frame}
+\begin{frame}
+	\frametitle{Estimates of simple sets}
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $\phi:[t_1,t_2] \to \Omega$ be a Lipschitz curve and let $K \subset \Omega$ be a set with elliptic $p$-capacity $0$, then the set
+		\begin{equation} \nonumber \label{}
+			K_{\phi} = \{(x+\phi(t),t): x \in K, t \in [t_1,t_2]\}
+		\end{equation}
+		has parabolic capacity $0$.
+	\end{theorem}
+	\pause
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $K \subset \Omega_\infty$ be a compact set, then
+		\begin{equation} \nonumber \label{}
+			\int_0^\infty \text{cap}_p(\pi_t(K),\Omega) dt \leq C_{var}(K,\Omega_\infty)
+		\end{equation}
+		where $\pi_t(K) = \{x: (x,t) \in K\}$.
+	\end{theorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Estimates of simple sets}
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $Q_r = B(x_0,r) \times (t_0-\tau, t_0)$ where $\tau < t_0$ and $Q_{2r} \subset \Omega_T$, then for $2 \leq p < n$
+		\begin{equation} \nonumber \label{}
+			C(\overline Q_r,\Omega_\infty) \approx r^n + \tau r^{n-p}
+		\end{equation}
+	\end{theorem}
+	\pause
+	\begin{theorem}[B.A., Kuusi, Parviainen, DCDS -15]
+		Let $Q_r^+ = B(x_0,r) \times (t_0,t_0+\tau)$ be such that $Q_{2r} \subset \Omega_\infty$ and let
+			\[ \mathcal{H} = \{ (x,h(x)): x \in \overline {B}(x_0,r) \} \]
+			where $h \in C(\R^n)$ satisfies $h(x) = t_0$ on $\partial B(x_0,r)$ and $\mathcal{H} \subset Q_r^+$. Then
+			\begin{equation*}
+				c^{-1} \left(\int_{0}^\infty \text{cap}_p(\pi_t(\mathcal{H}), \Omega) \, dt+r^n \right) \leq C(\mathcal{H},\Omega_\infty) \leq c (r^n + \tau \, r^{n-p} )
+			\end{equation*}
+			with $c= c(n,p)$.
+	\end{theorem}
+\end{frame}
+
+
+\begin{frame} % Bibliography
+	\begin{thebibliography}{HKM06}
+		\footnotesize
+		\bibitem{AKP} B. Avelin, T. Kuusi, and M. Parviainen.
+		\newblock Variational parabolic capacity.
+		\newblock \emph{Discrete and Continuous Dynamical Systems.} 35 (2015), no. 12, 5665--5688.
+		
+		\bibitem{DPP} J. Droniou, A. Porretta, and A. Prignet. 
+		\newblock Parabolic capacity and soft measures for nonlinear equations. 
+		\newblock \emph{Potential Anal.} 19 (2003), no. 2, 99--161.
+		
+		\bibitem{KKKP} J. Kinnunen, R. Korte, T. Kuusi, and M. Parviainen, 
+		\newblock Nonlinear parabolic capacity and polar sets of superparabolic functions.
+		\newblock \emph{Math. Ann.} 355 (2013), no. 4, 1349--1381.
+		
+		\bibitem{P} M. Pierre. 
+		\newblock Parabolic capacity and Sobolev spaces. 
+		\newblock \emph{SIAM J. Math. Anal.} 14 (1983), no. 3, 522--533.
+	\end{thebibliography}
+\end{frame}
+
+\end{document}
+

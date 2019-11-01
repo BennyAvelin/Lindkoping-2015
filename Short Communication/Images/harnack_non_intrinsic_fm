@@ -1,0 +1,11 @@
+% fmclassopt: 10pt
+% head:
+% \usepackage[utf8x]{inputenc}
+% end head
+\psfrag{tid1}{$t = t_1$}
+\psfrag{tid2}{$t = t_2$}
+\psfrag{L1}{Högsta temperaturen}
+\psfrag{L2}{i detta område ger}
+\psfrag{L3}{en undre gräns för}
+\psfrag{L4}{temperaturerna i samma}
+\psfrag{L5}{område i framtiden}
